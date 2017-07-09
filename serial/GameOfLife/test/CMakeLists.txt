@@ -1,0 +1,2 @@
+add_executable(test_game_of_life test_main.cpp test_cases.cpp)
+target_link_libraries(test_game_of_life world_library)
