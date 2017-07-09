@@ -43,3 +43,59 @@ TEST_CASE("Check live cells die with underpopulation"){
 
 }
 
+TEST_CASE("Check live cells die with overpopulation"){
+
+  aliveness data1[] = {1,1,1,0,
+                       1,1,1,0,
+                       1,1,1,0,
+                       0,0,0,0};
+
+  aliveness data2[] = {1,1,1,0,
+                       1,1,1,0,
+                       1,1,0,0,
+                       0,0,0,0};
+
+  aliveness data3[] = {1,1,1,0,
+                       1,1,0,0,
+                       1,1,0,0,
+                       0,0,0,0};
+
+  aliveness data4[] = {1,1,0,0,
+                       1,1,0,0,
+                       1,1,0,0,
+                       0,0,0,0};
+
+  aliveness data5[] = {1,1,0,0,
+                       1,1,0,0,
+                       1,0,0,0,
+                       0,0,0,0};
+
+
+  
+  world1.PopulateFromArray(data1, array_length);
+  world1.Update();
+
+  
+  world2.PopulateFromArray(data2, array_length);
+  world2.Update();
+
+  
+  world3.PopulateFromArray(data3, array_length);
+  world3.Update();
+
+  
+  world4.PopulateFromArray(data4, array_length);
+  world4.Update();
+
+  
+  world5.PopulateFromArray(data5, array_length);
+  world5.Update();
+
+  REQUIRE(world1.Grid()[1][1] == 0);
+  REQUIRE(world2.Grid()[1][1] == 0);
+  REQUIRE(world3.Grid()[1][1] == 0);
+  REQUIRE(world4.Grid()[1][1] == 0);
+  REQUIRE(world5.Grid()[1][1] == 0);
+
+}
+
