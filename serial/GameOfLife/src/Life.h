@@ -1,0 +1,41 @@
+#ifndef LIFE_H_
+#define LIFE_H_
+
+#include <vector>
+#include <cmath>
+#include <iostream>
+#include <cassert>
+#include <cstdlib>
+#include <stdexcept>
+
+using namespace std;
+
+typedef bool aliveness;
+typedef vector< vector< aliveness > > grid_type;
+
+class Life {
+public:
+  Life(int sizex, int sizey);
+  void Populate(int seed);
+  void PopulateFromArray(aliveness data[], int array_length);
+  void WriteHeader(ostream &out, int EndOfDays) const;
+  void Record(ostream &out) const;
+  void Update();
+  int Day() const;
+  int Sizex() const;
+  int Sizey() const;
+  int Size() const;
+  grid_type Grid() const;
+  aliveness NewState(int x, int y) const;
+
+private:
+  int day;
+  const int sizex;
+  const int sizey;
+  grid_type grid;
+  grid_type next_grid;
+  aliveness alive;
+  aliveness dead;
+};
+
+#endif /* LIFE_H_ */
